@@ -2,20 +2,20 @@
 
 static unsigned short control_word()
 {
-    unsigned short word;
+    unsigned short control;
 #if defined(_MSC_VER)
-    __asm fnstcw word
+    __asm fnstcw control
 #else
-    __asm__ __volatile__("fnstcw %0" : "=m"(word));
+    __asm__ __volatile__("fnstcw %0" : "=m"(control));
 #endif
-    return word;
+    return control;
 }
-static void set_control(unsigned short word)
+static void set_control(unsigned short control)
 {
 #if defined(_MSC_VER)
-    __asm fldcw word
+    __asm fldcw control
 #else
-    __asm__ __volatile__("fldcw %0" : : "m"(word));
+    __asm__ __volatile__("fldcw %0" : : "m"(control));
 #endif
 }
 static bool same(const X87_Float80 &a, const X87_Float80 &b)
