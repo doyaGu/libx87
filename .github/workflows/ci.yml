@@ -1,0 +1,22 @@
+name: Arithmetic tests
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            cmake_args: ""
+          - os: macos-latest
+            cmake_args: ""
+          - os: windows-latest
+            cmake_args: "-A x64"
+          - os: windows-latest
+            cmake_args: "-A Win32"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build ${{ matrix.cmake_args }} -DCMAKE_BUILD_TYPE=Release -DLIBX87_BUILD_TESTS=ON
+      - run: cmake --build build --config Release --parallel
+      - run: ctest --test-dir build -C Release --output-on-failure
+      - run: cmake --install build --config Release --prefix "${{ runner.temp }}/libx87"
