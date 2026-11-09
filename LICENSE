@@ -1,0 +1,11 @@
+The portable arithmetic adapter and fast/native paths were extracted from
+https://github.com/doyaGu/ivp and https://github.com/doyaGu/VxMath.
+
+The vendored Bochs numerical sources retain their original license notices:
+third_party/softfloat/BOCHS-LICENSE
+third_party/softfloat/BOCHS-COPYING
+third_party/softfloat/cpu/softfloat3e/COPYING.txt
+
+See third_party/softfloat/UPSTREAM.json for source provenance and hashes.
+
+VxMath license text is retained in VXMATH-LICENSE.
